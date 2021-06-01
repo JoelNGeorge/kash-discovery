@@ -1,0 +1,35 @@
+spring:
+    application:
+        name: kash-discovery
+
+server:
+    port: 8500
+
+management:
+    endpoints:
+        web:
+            base-path: /status
+            path-mapping:
+                health: healthcheck
+eureka:
+#    server:
+#        enableSelfPreservation: false
+    client:
+        register-with-eureka: false
+        fetch-registry: false
+        service-url:
+          defaultZone : http://localhost:8500/eureka
+        
+---
+
+spring:
+    profiles: dev
+server:
+    port: 8501
+
+---
+
+spring:
+    profiles: prod
+server:
+    port: 8502
